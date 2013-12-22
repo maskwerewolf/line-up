@@ -1,0 +1,37 @@
+@charset "utf-8";
+html{color:#4d4d4d;background:#fff}
+body,div,input,h1{padding: 0px;margin: 0px;}
+body,button,input,select,textarea{font:12px/1.5 tahoma,arial,\5b8b\4f53}
+table{border-collapse:collapse;border-spacing:0}
+
+.pr-10{padding-right:10px}
+.num{font-family: Georgia, "Times New Roman", Times, serif; font-size: 20px;color: #f37800;font-weight: bold;}
+.rmb{font-family: Georgia, "Times New Roman", Times, serif; font-size: 20px;color: #53a000;font-weight: bold;}
+.color1{color: #3d8bec}
+
+
+.container{position: relative;margin: 0 auto;width: 950px;height: auto;}
+.h-ui1{position: relative;margin-top: 150px;border: 1px solid  #d5d5d5}
+.h-ui1 h1{background:#eaeaea;}
+.h-ui1 h1{display:block;overflow:hidden;position:relative;color:#4d4d4d;clear:both}
+
+.h-ui2{position:relative;border-top:1px solid #d5d5d5;}
+.h-ui2 table{margin-top: 5px;}
+
+.h-ui3{position:relative;margin-left: 200px;margin-top: 20px;margin-bottom: 20px;}
+.h-ui3 .inp1{border: 1px solid #ccc;;width: 200px;height: 30px;padding-left:15px;}
+.h-ui3 .inp2{border: 1px solid #ccc;;width: 50px;height: 30px;margin-left:10px;}
+.h-ui3 .inp3{border: 1px solid #ccc;;width: 50px;height: 30px;margin-left:5px;padding-left: 15px; }
+.h-ui3 .btn1{background: #dddddd;height: 32px;border:0;width: 150px;text-align:center;}
+
+
+.b-ui1{position: relative ;margin-top: 10px;width: 640px; height: 700px; border: 1px solid #d5d5d5;float: left;}
+.b-ui2{width: 300px;height: 800px; border:  1px solid #d5d5d5;float: right;margin-top: 10px;}
+.scroll ul,.scroll li{list-style:none; margin:0; padding:0;}
+.scroll li{padding-left: 10px; line-height:25px; overflow:hidden;}
+
+
+.b-ui1 table th{border-bottom: 1px solid saddlebrown ;text-align: center;line-height: 30px;border-bottom:1px solid  #d5d5d5;background: #eaeaea; }
+.b-ui1 table td{border-bottom: 1px solid saddlebrown ;text-align: center;line-height: 30px;border-bottom: 1px solid #d5d5d5}
+.footer{position: relative;width: auto;height: 100px;background: #eaeaea;margin-top: 20px;border-top: 1px solid #d5d5d5;}
+.footer .content{position: relative;margin: 0 auto;width: 950px;height: auto;}

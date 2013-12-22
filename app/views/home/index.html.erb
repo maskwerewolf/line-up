@@ -1,0 +1,90 @@
+<div class="container">
+
+    <div class="h-ui1">
+        <h1>正在排队.....</h1>
+
+        <div class="h-ui2">
+            <table width="100%">
+                <tr>
+
+                    <% (1..8).each_with_index do |item, index| %>
+                        <td>
+                            <span class="num"><%= item %></span><%= @in_queues[index].nil? ? '等待入队...' : @in_queues[index].account_name %>
+                        </td>
+                    <% end %>
+                </tr>
+            </table>
+
+            <div class="h-ui3">
+                <%= form_tag '/offer', method: 'post' do %>
+                    <input type="text" class="inp1" name="account_name"/>
+                    <input type="text" class="inp2" value="XYZW"/>
+                    <input type="text" class="inp3"/>
+                    <input type="submit" value="进入队列" class="btn1">
+                <% end %>
+            </div>
+        </div>
+    </div>
+
+    <div style="position: relative ;margin-top: 10px;width: 950px;; height: 100px;  ;text-align: center;">
+        <img src="images/ad950_90.jpg">
+    </div>
+
+
+    <div class="b-ui1">
+
+        <table width="100%">
+            <colgroup>
+                <col width="20"/>
+                <col width="30"/>
+                <col width="30"/>
+                <col width="20"/>
+            </colgroup>
+
+            <thead>
+            <tr>
+                <th>编号</th>
+                <th>入队时间</th>
+                <th>帐号</th>
+                <th>领奖金额(元)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @out_queues.each do |out_queue| %>
+                <tr>
+
+                    <td class="num"><%= out_queue.out_queue_num %></td>
+                    <td><%= out_queue.created_at.localtime.strftime('%-Y.%-m.%-d %H:%M') %></td>
+                    <td><%= out_queue.account_name %></td>
+                    <td class="rmb"><%= out_queue.acquisition_amount_total %></td>
+                </tr>
+            <% end %>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="b-ui2 scroll">
+        <ul class="list">
+            <% @acquisition_amount.each do |q| %>
+            <li>
+                <span class="color1"><%=q.account_name%></span>已经领取红包
+                <span class="num"><%=q.acquisition_amount_count%></span>次共计
+                <span class="rmb"><%=q.last_acquisition_amount%></span>元
+            </li>
+            <% end %>
+
+
+        </ul>
+    </div>
+
+
+    <div style="position: relative;width: 640px;height: 100px;float: left;margin-top: 10px;text-align: center">
+        <img src="images/ad640_90.jpg">
+    </div>
+    <div style="clear:both;"></div>
+</div>
+<div class="footer">
+    <div class="content">
+        <h2>FUCK</h2>
+    </div>
+</div>
