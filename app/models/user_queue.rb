@@ -1,5 +1,7 @@
 class UserQueue < ActiveRecord::Base
-  QUEUE_SIZE= 8
+  QUEUE_SIZE = 3
+  DEFAULT_AMOUNT = 1000 #分
+
   #IS_IN_QUEUE_STATUS = [YES=101, NO=102]
   QUEUE_TYPE = [IN=201, OUT=202, IDLE=203]
   #attr_accessor :id, :account_name, :in_queue_num, :out_queue_num, :queue_type,
@@ -57,16 +59,23 @@ class UserQueue < ActiveRecord::Base
 
     def handler_out_queue
       out_queues = UserQueue.where('queue_type = ? and out_queue_num !=?', OUT, 0).order('out_queue_num asc')
+      idle_queue_num_max = UserQueue.where('queue_type = ? and is_acquisition_amount = ?', UserQueue::IDLE, true).maximum(:idle_queue_num)
       queue = out_queues.first
       queue.in_queue_num = 0
       queue.out_queue_num = 0
+
       queue.queue_type = IDLE
-      queue.acquisition_amount_count = queue.acquisition_amount_count + 1
-      queue.last_acquisition_time = Time.now
-      queue.last_acquisition_amount = 100
-      queue.acquisition_amount_total = queue.acquisition_amount_total + 100
+      queue.idle_queue_num = (idle_queue_num_max || 0 )+ 1
+
+      #queue.acquisition_amount_count = queue.acquisition_amount_count + 1
+      #queue.last_acquisition_time = Time.now
+
+      #queue.last_acquisition_amount = 100
+      #queue.acquisition_amount_total = queue.acquisition_amount_total + 100
+      #
       queue.is_acquisition_amount = true #是否可以领钱
-      queue.is_in_queue = true
+      #queue.is_in_queue = true
+
       queue.save!
 
       #update out queue
@@ -78,8 +87,17 @@ class UserQueue < ActiveRecord::Base
 
 
     end
+  end
 
-
+  def aa(amount)
+    self.queue_type = IN
+    self.acquisition_amount_count = self.acquisition_amount_count + 1
+    self.last_acquisition_time = Time.now
+    self.last_acquisition_amount = amount
+    self.acquisition_amount_total = self.acquisition_amount_total + amount
+    self.is_acquisition_amount = false #是否可以领钱
+    self.is_in_queue = true
+    self.save!
   end
 
 

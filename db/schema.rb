@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20131219123830) do
     t.string   "account_name"
     t.integer  "in_queue_num",             :default => 0
     t.integer  "out_queue_num",            :default => 0
+    t.integer  "idle_queue_num",           :default => 0
     t.integer  "queue_type"
     t.integer  "acquisition_amount_count", :default => 0
     t.integer  "last_acquisition_amount",  :default => 0
