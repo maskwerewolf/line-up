@@ -40,7 +40,7 @@ table{border-collapse:collapse;border-spacing:0}
 .c-right .b-ui4 h2{color: #333}
 
 
-.b-ui3 .tab ,.b-ui4 .tab{border-top:2px solid #E4393C;border-left:1px solid #f1f1f1;border-bottom: 1px solid #f1f1f1;border-right: 1px solid #f1f1f1}
+.b-ui3 .tab ,.b-ui4 .tab{border: 1px solid #f1f1f1;border-top:2px solid #E4393C;}
 .b-ui3 .tab p,.b-ui4 p{line-height: 20px;padding: 0;margin: 5px;}
 
 
