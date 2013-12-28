@@ -60,7 +60,7 @@
                     <tr>
 
                         <td class="num"><%= out_queue.out_queue_num %></td>
-                        <td><%= out_queue.created_at.localtime.strftime('%-Y.%-m.%-d %H:%M') %></td>
+                        <td><%= out_queue.created_at.localtime.strftime('%-Y.%-m.%-d %H:%M:%S') %></td>
                         <td><%= out_queue.account_name %></td>
                         <td class="rmb"><%= out_queue.acquisition_amount_total %></td>
                     </tr>

@@ -87,18 +87,21 @@ class UserQueue < ActiveRecord::Base
 
 
     end
+
+    def out(queue,amount)
+      queue.queue_type = IN
+      queue.idle_queue_num  = 0
+      queue.acquisition_amount_count = queue.acquisition_amount_count + 1
+      queue.last_acquisition_time = Time.now
+      queue.last_acquisition_amount = amount
+      queue.acquisition_amount_total = queue.acquisition_amount_total + amount
+      queue.is_acquisition_amount = false #是否可以领钱
+      queue.is_in_queue = true
+      queue.save!
+    end
   end
 
-  def aa(amount)
-    self.queue_type = IN
-    self.acquisition_amount_count = self.acquisition_amount_count + 1
-    self.last_acquisition_time = Time.now
-    self.last_acquisition_amount = amount
-    self.acquisition_amount_total = self.acquisition_amount_total + amount
-    self.is_acquisition_amount = false #是否可以领钱
-    self.is_in_queue = true
-    self.save!
-  end
+
 
 
 end

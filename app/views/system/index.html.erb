@@ -23,6 +23,12 @@
 <div class="s-container">
     <div class="shell">
         <div class="main">
+            <div style="display: none">
+                <%=form_tag('/system' , method:'post',id:'s-form')  do %>
+                    <input type="hidden" name="amount" value="0"/>
+                    <input type="hidden" name="id" value="0"/>
+                <% end %>
+            </div>
             <table width="100%">
                 <colgroup>
                     <col width="15"/>
@@ -51,7 +57,7 @@
                     <td><strong><%=q.acquisition_amount_count%></strong></td>
                     <td><span class="rmb"><%=q.acquisition_amount_total%></span></td>
                     <td><input type="text" class="input-amount rmb" value="<%=UserQueue::DEFAULT_AMOUNT/1000%>"/></td>
-                    <td><button class="btn-ok">确定</button></td>
+                    <td><button class="btn-ok" dataValue="<%=q.id%>">确定</button></td>
                 </tr>
              <% end %>
                 </tbody>
