@@ -12,7 +12,7 @@ class UserQueue < ActiveRecord::Base
     def offer(account_name)
       current_queue_size = handle_in_queue
       q = first_in_or_second_in(account_name)
-      raise ArgumentError unless q.is_in_queue
+      raise QueueError::AccountNameExistQueue unless q.is_in_queue
       q.queue_type = IN
       q.in_queue_num = current_queue_size+ 1
       q.account_name = account_name

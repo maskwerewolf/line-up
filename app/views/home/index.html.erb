@@ -1,27 +1,23 @@
 <div class="header">
     <div class="header-top">
-         <div class="h-body" style="height: 575px;">
-             <img src="<%= asset_path 'h-body.png'%>" style="margin: auto;height: 575px;width: 950px;">
-         </div>
+        <div class="h-body" style="height: 575px;">
+            <img src="<%= asset_path 'h-body.png' %>" style="margin: auto;height: 575px;width: 950px;">
+        </div>
         <div style="height: 250px;position: absolute;width: 400px;top: 320px;left: 300px;color: #fff;font-size:14px;line-height: 15px;font-family: 'Microsoft YaHei';">
-             <p><strong>说明:</strong></p>
-             <p>1.支付宝用户登录支付宝用户登录支付宝用户登录</p>
-             <p>2.红包可以多次领取支付宝用户登录支付宝用户登录</p>
+            <p><strong>说明:</strong></p>
+
+            <p>1.支付宝用户登录支付宝用户登录支付宝用户登录</p>
+
+            <p>2.红包可以多次领取支付宝用户登录支付宝用户登录</p>
+
             <p>3.红包可以多次领取支付宝用户登录支付宝用户登录</p>
+
             <p>4.红包可以多次领取支付宝用户登录支付宝用户登录</p>
         </div>
-        <!--<div class="bg1"></div>-->
-         <!--<div style="color: #fff;font: 14px;margin: 0">-->
-             <!--<pre>-->
-
-             <!--</pre>-->
-         <!--</div>-->
     </div>
 
 
-    <!--<div style="position: absolute;height: 400px;width: 950px;margin: auto;background: url(<%= asset_path 'hongbao.png' %>) no-repeat;margin-top: -100px;">-->
-    <!--</div>-->
-     <div class="header-bottom"></div>
+    <div class="header-bottom"></div>
 </div>
 <div class="container">
 
@@ -34,7 +30,8 @@
 
                     <% (1..UserQueue::QUEUE_SIZE).each_with_index do |item, index| %>
                         <td>
-                            <span class="num"><%= item %>.</span><%= @in_queues[index].nil? ? '等待入队...' : @in_queues[index].account_name %>
+                            <span class="num"><%= item %>
+                                .</span><%= @in_queues[index].nil? ? '等待入队...' : @in_queues[index].account_name %>
                         </td>
                     <% end %>
                 </tr>
@@ -43,9 +40,10 @@
             <div class="h-ui3">
                 <%= form_tag '/offer', method: 'post' do %>
                     <input type="text" class="inp1" name="account_name"/>
-                    <input type="text" class="inp2" value="XYZW"/>
-                    <input type="text" class="inp3"/>
+                    <span id="refresh"> <%= captcha_tag %> </span>
+                    <input type="text" class="inp3" name="captcha"/>
                     <input type="submit" value="进入队列" class="btn1">
+                    <p class="error"><%= notice %></p>
                 <% end %>
             </div>
         </div>
@@ -58,8 +56,10 @@
     <div class="c-left">
         <div class="b-ui3">
             <h2>红包领取中</h2>
+
             <div class="tab">
                 <p>1.排队队列满</p>
+
                 <p>1.随机获取不同金额</p>
             </div>
         </div>
@@ -107,9 +107,9 @@
             <ul class="list">
                 <% @acquisition_amount.each do |q| %>
                     <li>
-                        <span class="color1"><%=q.account_name%></span>已经领取红包
-                        <span class="num"><%=q.acquisition_amount_count%></span>次共计
-                        <span class="rmb"><%=q.last_acquisition_amount%></span>元
+                        <span class="color1"><%= q.account_name %></span>已经领取红包
+                        <span class="num"><%= q.acquisition_amount_count %></span>次共计
+                        <span class="rmb"><%= q.last_acquisition_amount %></span>元
                     </li>
                 <% end %>
 
@@ -119,11 +119,6 @@
     </div>
 
 
-
-
-
-
-
     <div style="clear:both;"></div>
 </div>
 <div class="footer">
@@ -131,3 +126,4 @@
         <h2>FUCK</h2>
     </div>
 </div>
+
