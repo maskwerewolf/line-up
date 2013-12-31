@@ -56,10 +56,8 @@
     <div class="c-left">
         <div class="b-ui3">
             <h2>红包领取中</h2>
-
             <div class="tab">
                 <p>1.排队队列满</p>
-
                 <p>1.随机获取不同金额</p>
             </div>
         </div>
@@ -77,20 +75,22 @@
                     <th>编号</th>
                     <th>入队时间</th>
                     <th>帐号</th>
-                    <th>领奖金额(元)</th>
+                    <th>上次红包金额(元)</th>
                 </tr>
                 </thead>
                 <tbody>
-                <% @out_queues.each do |out_queue| %>
+                <% @out_queues.each_with_index do |out_queue,index| %>
                     <tr>
-
-                        <td class="num"><%= out_queue.out_queue_num %></td>
+                        <td class="num"><%= index + 1%></td>
                         <td><%= out_queue.created_at.localtime.strftime('%-Y.%-m.%-d %H:%M:%S') %></td>
                         <td><%= out_queue.account_name %></td>
-                        <td class="rmb"><%= out_queue.acquisition_amount_total %></td>
+                        <td class="rmb"><%= out_queue.last_acquisition_amount%></td>
                     </tr>
                 <% end %>
                 </tbody>
+                <tfoot>
+                    <tr><td colspan="4" style="text-align: right;padding-right: 20px;">  <%= will_paginate @out_queues %></td></tr>
+                </tfoot>
             </table>
         </div>
         <div style="position: relative;width: 640px;height: 100px;float: left;margin-top: 10px;text-align: center">
@@ -108,8 +108,8 @@
                 <% @acquisition_amount.each do |q| %>
                     <li>
                         <span class="color1"><%= q.account_name %></span>已经领取红包
-                        <span class="num"><%= q.acquisition_amount_count %></span>次共计
-                        <span class="rmb"><%= q.last_acquisition_amount %></span>元
+                        <span class="num"><%= q.acquisition_amount_count %></span>个共计
+                        <span class="rmb"><%= q.acquisition_amount_total %></span>元
                     </li>
                 <% end %>
 
@@ -123,7 +123,8 @@
 </div>
 <div class="footer">
     <div class="content">
-        <h2>FUCK</h2>
+        <p>广告合作:</p>
+        <p>联系我们:</p>
     </div>
 </div>
 

@@ -43,16 +43,16 @@
                     <th>队列号</th>
                     <th>用户账号</th>
                     <th>次数</th>
-                    <th>上次金额</th>
-                    <th>本次金额</th>
+                    <th>上次金额(元)</th>
+                    <th>本次金额(厘)</th>
                     <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
 
-            <%@acquisition_queue.each do |q|%>
+            <%@acquisition_queue.each_with_index do |q,index|%>
                 <tr>
-                    <td><span class="num"><%=q.idle_queue_num%></span></td>
+                    <td><span class="num"><%= index + 1%></span></td>
                     <td><%=q.account_name%></td>
                     <td><strong><%=q.acquisition_amount_count%></strong></td>
                     <td><span class="rmb"><%=q.acquisition_amount_total%></span></td>

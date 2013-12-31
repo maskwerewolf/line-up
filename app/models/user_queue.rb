@@ -1,23 +1,19 @@
+#encoding:utf-8
 class UserQueue < ActiveRecord::Base
   QUEUE_SIZE = 3
-  DEFAULT_AMOUNT = 1000 #分
-
-  #IS_IN_QUEUE_STATUS = [YES=101, NO=102]
-  QUEUE_TYPE = [IN=201, OUT=202, IDLE=203]
-  #attr_accessor :id, :account_name, :in_queue_num, :out_queue_num, :queue_type,
-  #              :acquisition_amount_count, :last_acquisition_amount, :last_acquisition_time,
-  #              :acquisition_amount_total, :is_in_queue, :is_acquisition_amount
-
+  DEFAULT_AMOUNT = 1000 #厘
+  QUEUE_TYPE = [IN=201, OUT=202, IDLE=203, NONE = 204]
   class << self
     def offer(account_name)
-      current_queue_size = handle_in_queue
-      q = first_in_or_second_in(account_name)
-      raise QueueError::AccountNameExistQueue unless q.is_in_queue
-      q.queue_type = IN
-      q.in_queue_num = current_queue_size+ 1
-      q.account_name = account_name
-      q.is_in_queue = false
-      q.save!
+      UserQueue.transaction do
+        handle_in_queue
+        q = first_in_or_second_in(account_name)
+        raise QueueError::AccountNameExistQueue unless q.is_in_queue
+        q.queue_type = IN
+        q.account_name = account_name
+        q.is_in_queue = false
+        q.save!
+      end
     end
 
     def first_in_or_second_in(account_name)
@@ -32,76 +28,37 @@ class UserQueue < ActiveRecord::Base
     end
 
     def handle_in_queue
-      #1,2,3,4,5,6,7
-      in_queues = UserQueue.where('queue_type = ? and in_queue_num !=?', IN, 0).order('in_queue_num asc')
+      in_queues = UserQueue.where(queue_type: IN).order('updated_at asc')
       if in_queues.count == QUEUE_SIZE - 1
-        #1,2,3,4,5,6,7
-        out_queues = UserQueue.where('queue_type = ? and out_queue_num !=?', OUT, 0).order('out_queue_num asc')
-
-        out_queue_num = out_queues.empty? ? 0 : out_queues.last.out_queue_num
-
-        #in_queues.update_all(in_queue_num:0,)
-
-        in_queues.each do |q|
-          q.queue_type = OUT
-          q.is_in_queue = false
-          q.out_queue_num = out_queue_num + q.in_queue_num
-          q.in_queue_num = 0
-          q.save!
-        end
-        #first out
-        handler_out_queue
+        in_queues.update_all(:queue_type => OUT, :is_in_queue => false)
+        handle_out_queue
       end
-
-      return 0 if in_queues.empty?
-      return in_queues.last.in_queue_num
     end
 
-    def handler_out_queue
-      out_queues = UserQueue.where('queue_type = ? and out_queue_num !=?', OUT, 0).order('out_queue_num asc')
-      idle_queue_num_max = UserQueue.where('queue_type = ? and is_acquisition_amount = ?', UserQueue::IDLE, true).maximum(:idle_queue_num)
-      queue = out_queues.first
-      queue.in_queue_num = 0
-      queue.out_queue_num = 0
 
-      queue.queue_type = IDLE
-      queue.idle_queue_num = (idle_queue_num_max || 0 )+ 1
-
-      #queue.acquisition_amount_count = queue.acquisition_amount_count + 1
-      #queue.last_acquisition_time = Time.now
-
-      #queue.last_acquisition_amount = 100
-      #queue.acquisition_amount_total = queue.acquisition_amount_total + 100
-      #
-      queue.is_acquisition_amount = true #是否可以领钱
-      #queue.is_in_queue = true
-
-      queue.save!
-
-      #update out queue
-      out_queues = UserQueue.where('queue_type = ? and out_queue_num !=?', OUT, 0).order('out_queue_num asc')
-      out_queues.each do |q|
-        q.out_queue_num = q.out_queue_num - 1
-        q.save!
-      end
-
-
+    def handle_out_queue
+      out_queue = UserQueue.where(queue_type: OUT).order('updated_at asc').first!
+      raise StandardError unless out_queue.queue_type == OUT
+      out_queue.queue_type = IDLE
+      out_queue.is_acquisition_amount = true
+      out_queue.save!
     end
 
-    def out(queue,amount)
-      queue.queue_type = IN
-      queue.idle_queue_num  = 0
+
+    def out(queue, amount)
+      raise StandardError unless queue.queue_type == IDLE
+      raise StandardError unless queue.is_acquisition_amount == true
+      queue.queue_type = NONE
       queue.acquisition_amount_count = queue.acquisition_amount_count + 1
       queue.last_acquisition_time = Time.now
       queue.last_acquisition_amount = amount
       queue.acquisition_amount_total = queue.acquisition_amount_total + amount
-      queue.is_acquisition_amount = false #是否可以领钱
+      queue.is_acquisition_amount = false
       queue.is_in_queue = true
       queue.save!
+      #TODO 生成记录
     end
   end
-
-
 
 
 end
