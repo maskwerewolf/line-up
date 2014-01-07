@@ -21,26 +21,55 @@
 </div>
 <div class="container">
 
+    <div style="position: relative;margin-top: 10px;width: 950px;">
+     <div style="float: left;width: 200px;">
+         <h2 style="color: #de0305">排队中...</h2>
+         <div style="background: #f1f1f1;width: 200px;border-top: 2px solid #de0305;padding-bottom: 5px;">
+             <ul style="list-style: none;padding-left: 5px;margin-left: 0px;margin-top:0px;line-height: 22px;">
+                 <li><span class="num">1</span><span class="color1 pl5">11111111@test.com</span></li>
+                 <li><span class="num">2</span><span class="color1 pl5">13999999999</span></li>
+                 <li><span class="num">3</span><span class="color1 pl5">text@test.com</span></li>
+                 <li><span class="num">4</span><span class="color1 pl5">text@test.com</span></li>
+                 <li><span class="num">5</span><span class="color1 pl5">text@test.com</span></li>
+                 <li><span class="num">6</span><span class="color1 pl5">text@test.com</span></li>
+                 <li><span class="num">7</span><span class="color1 pl5">等待如队...</span></li>
+             </ul>
+         </div>
+     </div>
+
+        <div style="position: relative;float: right;width: 740px;">
+            <h2 style="color: #333">排队中...</h2>
+            <div style="background: #f1f1f1;width: 200px;border-top: 2px solid #666;width: 740px;" class="ui-form">
+                <p><label>支付宝帐号</label> <input type="text" class="inp1" name="account_name"/></p>
+                <p><label>验证码</label>  <span id="refresh"> <%= captcha_tag :alt => '点击刷新' %> </span>   <input type="text" class="inp3" name="captcha"/></p>
+                <p> <input type="submit" value="进入队列" class="btn1"></p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div style="clear:both;"></div>
     <div class="h-ui1">
         <h2>正在排队.....</h2>
-
+        <div style="position: absolute;top: 0px; ;right: 0;color: #FFF100">
+             <p style="line-height: 14px;font-size: 14px;margin: 5px;">当前排队总人数100人,已发红包100元</p>
+        </div>
         <div class="h-ui2">
             <table width="100%">
                 <tr>
 
                     <% (1..UserQueue::QUEUE_SIZE).each_with_index do |item, index| %>
                         <td>
-                            <span class="num"><%= item %>
-                                .</span><%= @in_queues[index].nil? ? '等待入队...' : @in_queues[index].account_name %>
+                            <span class="num"><%= item %>.</span><%= @in_queues[index].nil? ? '等待入队...' : @in_queues[index].account_name %>
                         </td>
                     <% end %>
                 </tr>
             </table>
-
             <div class="h-ui3">
                 <%= form_tag '/offer', method: 'post' do %>
                     <input type="text" class="inp1" name="account_name"/>
-                    <span id="refresh"> <%= captcha_tag %> </span>
+                    <span id="refresh"> <%= captcha_tag :alt => '点击刷新' %> </span>
                     <input type="text" class="inp3" name="captcha"/>
                     <input type="submit" value="进入队列" class="btn1">
                     <p class="error"><%= notice %></p>
@@ -49,8 +78,10 @@
         </div>
     </div>
 
+
+
     <div style="position: relative ;margin-top: 10px;width: 950px;; height: 100px;  ;text-align: center;">
-        <img src="images/ad950_90.jpg">
+        <img src="images/ad950_90.jpg" style="width: 950px;">
     </div>
 
     <div class="c-left">
