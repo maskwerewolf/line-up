@@ -1,55 +1,59 @@
-<div class="header">
-    <div class="header-top">
-        <div class="h-body" style="height: 575px;">
-            <img src="<%= asset_path 'h-body.png' %>" style="margin: auto;height: 575px;width: 950px;">
-        </div>
-        <div style="height: 250px;position: absolute;width: 400px;top: 320px;left: 300px;color: #fff;font-size:14px;line-height: 15px;font-family: 'Microsoft YaHei';">
-            <p><strong>说明:</strong></p>
 
-            <p>1.支付宝用户登录支付宝用户登录支付宝用户登录</p>
+<!--<div class="header">-->
+    <!--<div class="header-top">-->
+        <!--<div class="h-body" style="height: 575px;">-->
+            <!--<img src=" 'h-body.png'" style="margin: auto;height: 575px;width: 950px;">-->
+        <!--</div>-->
+        <!--<div style="height: 250px;position: absolute;width: 400px;top: 320px;left: 300px;color: #fff;font-size:14px;line-height: 15px;font-family: 'Microsoft YaHei';">-->
+            <!--<p><strong>说明:</strong></p>-->
 
-            <p>2.红包可以多次领取支付宝用户登录支付宝用户登录</p>
+            <!--<p>1.支付宝用户登录支付宝用户登录支付宝用户登录</p>-->
 
-            <p>3.红包可以多次领取支付宝用户登录支付宝用户登录</p>
+            <!--<p>2.红包可以多次领取支付宝用户登录支付宝用户登录</p>-->
 
-            <p>4.红包可以多次领取支付宝用户登录支付宝用户登录</p>
-        </div>
-    </div>
+            <!--<p>3.红包可以多次领取支付宝用户登录支付宝用户登录</p>-->
+
+            <!--<p>4.红包可以多次领取支付宝用户登录支付宝用户登录</p>-->
+        <!--</div>-->
+    <!--</div>-->
 
 
-    <div class="header-bottom"></div>
+    <!--<div class="header-bottom"></div>-->
+<!--</div>-->
+
+<div class="header1">
 </div>
-<div class="container">
 
-    <div style="position: relative;margin-top: 10px;width: 950px;">
-     <div style="float: left;width: 200px;">
-         <h2 style="color: #de0305">排队中...</h2>
-         <div style="background: #f1f1f1;width: 200px;border-top: 2px solid #de0305;padding-bottom: 5px;">
-             <ul style="list-style: none;padding-left: 5px;margin-left: 0px;margin-top:0px;line-height: 22px;">
-                 <li><span class="num">1</span><span class="color1 pl5">11111111@test.com</span></li>
-                 <li><span class="num">2</span><span class="color1 pl5">13999999999</span></li>
-                 <li><span class="num">3</span><span class="color1 pl5">text@test.com</span></li>
-                 <li><span class="num">4</span><span class="color1 pl5">text@test.com</span></li>
-                 <li><span class="num">5</span><span class="color1 pl5">text@test.com</span></li>
-                 <li><span class="num">6</span><span class="color1 pl5">text@test.com</span></li>
-                 <li><span class="num">7</span><span class="color1 pl5">等待如队...</span></li>
-             </ul>
-         </div>
-     </div>
+<div class="container-layout">
+    <div class="container">
 
-        <div style="position: relative;float: right;width: 740px;">
-            <h2 style="color: #333">排队中...</h2>
-            <div style="background: #f1f1f1;width: 200px;border-top: 2px solid #666;width: 740px;" class="ui-form">
-                <p><label>支付宝帐号</label> <input type="text" class="inp1" name="account_name"/></p>
-                <p><label>验证码</label>  <span id="refresh"> <%= captcha_tag :alt => '点击刷新' %> </span>   <input type="text" class="inp3" name="captcha"/></p>
-                <p> <input type="submit" value="进入队列" class="btn1"></p>
-            </div>
-        </div>
-    </div>
+    <!--<div style="position: relative;margin-top: 10px;width: 950px;">-->
+     <!--<div style="float: left;width: 200px;">-->
+         <!--<h2 style="color: #de0305">排队中...</h2>-->
+         <!--<div style="background: #f1f1f1;width: 200px;border-top: 2px solid #de0305;padding-bottom: 5px;">-->
+             <!--<ul style="list-style: none;padding-left: 5px;margin-left: 0px;margin-top:0px;line-height: 22px;">-->
+                 <!--<li><span class="num">1</span><span class="color1 pl5">11111111@test.com</span></li>-->
+                 <!--<li><span class="num">2</span><span class="color1 pl5">13999999999</span></li>-->
+                 <!--<li><span class="num">3</span><span class="color1 pl5">text@test.com</span></li>-->
+                 <!--<li><span class="num">4</span><span class="color1 pl5">text@test.com</span></li>-->
+                 <!--<li><span class="num">5</span><span class="color1 pl5">text@test.com</span></li>-->
+                 <!--<li><span class="num">6</span><span class="color1 pl5">text@test.com</span></li>-->
+                 <!--<li><span class="num">7</span><span class="color1 pl5">等待如队...</span></li>-->
+             <!--</ul>-->
+         <!--</div>-->
+     <!--</div>-->
 
+        <!--<div style="position: relative;float: right;width: 740px;">-->
+            <!--<h2 style="color: #333">排队中...</h2>-->
+            <!--<div style="background: #f1f1f1;width: 200px;border-top: 2px solid #666;width: 740px;" class="ui-form">-->
+                <!--<p><label>支付宝帐号</label> <input type="text" class="inp1" name="account_name"/></p>-->
+                <!--<p><label>验证码</label>  <span id="refresh"> <%= captcha_tag :alt => '点击刷新' %> </span>   <input type="text" class="inp3" name="captcha"/></p>-->
+                <!--<p> <input type="submit" value="进入队列" class="btn1"></p>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div style="clear:both;"></div>-->
 
-
-    <div style="clear:both;"></div>
     <div class="h-ui1">
         <h2>正在排队.....</h2>
         <div style="position: absolute;top: 0px; ;right: 0;color: #FFF100">
@@ -151,6 +155,7 @@
 
 
     <div style="clear:both;"></div>
+</div>
 </div>
 <div class="footer">
     <div class="content">
