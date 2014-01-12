@@ -1,108 +1,75 @@
-
-<!--<div class="header">-->
-    <!--<div class="header-top">-->
-        <!--<div class="h-body" style="height: 575px;">-->
-            <!--<img src=" 'h-body.png'" style="margin: auto;height: 575px;width: 950px;">-->
-        <!--</div>-->
-        <!--<div style="height: 250px;position: absolute;width: 400px;top: 320px;left: 300px;color: #fff;font-size:14px;line-height: 15px;font-family: 'Microsoft YaHei';">-->
-            <!--<p><strong>说明:</strong></p>-->
-
-            <!--<p>1.支付宝用户登录支付宝用户登录支付宝用户登录</p>-->
-
-            <!--<p>2.红包可以多次领取支付宝用户登录支付宝用户登录</p>-->
-
-            <!--<p>3.红包可以多次领取支付宝用户登录支付宝用户登录</p>-->
-
-            <!--<p>4.红包可以多次领取支付宝用户登录支付宝用户登录</p>-->
-        <!--</div>-->
-    <!--</div>-->
-
-
-    <!--<div class="header-bottom"></div>-->
-<!--</div>-->
-
-<div class="header1">
-</div>
+<div class="header1"></div>
 
 <div class="container-layout">
     <div class="container">
-
-    <!--<div style="position: relative;margin-top: 10px;width: 950px;">-->
-     <!--<div style="float: left;width: 200px;">-->
-         <!--<h2 style="color: #de0305">排队中...</h2>-->
-         <!--<div style="background: #f1f1f1;width: 200px;border-top: 2px solid #de0305;padding-bottom: 5px;">-->
-             <!--<ul style="list-style: none;padding-left: 5px;margin-left: 0px;margin-top:0px;line-height: 22px;">-->
-                 <!--<li><span class="num">1</span><span class="color1 pl5">11111111@test.com</span></li>-->
-                 <!--<li><span class="num">2</span><span class="color1 pl5">13999999999</span></li>-->
-                 <!--<li><span class="num">3</span><span class="color1 pl5">text@test.com</span></li>-->
-                 <!--<li><span class="num">4</span><span class="color1 pl5">text@test.com</span></li>-->
-                 <!--<li><span class="num">5</span><span class="color1 pl5">text@test.com</span></li>-->
-                 <!--<li><span class="num">6</span><span class="color1 pl5">text@test.com</span></li>-->
-                 <!--<li><span class="num">7</span><span class="color1 pl5">等待如队...</span></li>-->
-             <!--</ul>-->
-         <!--</div>-->
-     <!--</div>-->
-
-        <!--<div style="position: relative;float: right;width: 740px;">-->
-            <!--<h2 style="color: #333">排队中...</h2>-->
-            <!--<div style="background: #f1f1f1;width: 200px;border-top: 2px solid #666;width: 740px;" class="ui-form">-->
-                <!--<p><label>支付宝帐号</label> <input type="text" class="inp1" name="account_name"/></p>-->
-                <!--<p><label>验证码</label>  <span id="refresh"> <%= captcha_tag :alt => '点击刷新' %> </span>   <input type="text" class="inp3" name="captcha"/></p>-->
-                <!--<p> <input type="submit" value="进入队列" class="btn1"></p>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div style="clear:both;"></div>-->
-
     <div class="h-ui1">
-        <h2>正在排队.....</h2>
-        <div style="position: absolute;top: 0px; ;right: 0;color: #FFF100">
+          <div class="h-title">
+               <strong>正在排队.....</strong>
+          </div>
+
+
+        <div style="position: absolute;top: 13px; ;right: 0px;color: #fff">
              <p style="line-height: 14px;font-size: 14px;margin: 5px;">当前排队总人数100人,已发红包100元</p>
         </div>
-        <div class="h-ui2">
-            <table width="100%">
-                <tr>
+        <div class="h-body">
 
-                    <% (1..UserQueue::QUEUE_SIZE).each_with_index do |item, index| %>
-                        <td>
-                            <span class="num"><%= item %>.</span><%= @in_queues[index].nil? ? '等待入队...' : @in_queues[index].account_name %>
-                        </td>
-                    <% end %>
-                </tr>
-            </table>
-            <div class="h-ui3">
+            <div class="h-body-form">
                 <%= form_tag '/offer', method: 'post' do %>
                     <input type="text" class="inp1" name="account_name"/>
                     <span id="refresh"> <%= captcha_tag :alt => '点击刷新' %> </span>
                     <input type="text" class="inp3" name="captcha"/>
                     <input type="submit" value="进入队列" class="btn1">
-                    <p class="error"><%= notice %></p>
                 <% end %>
+                <span class="error"><%= notice %></span>
+                <div class="" style="position: absolute;right: 0px;top: 5px;margin: 0px;padding: 0px;">
+                    <i class="run"></i>
+                    <i class="run"></i>
+                    <i class="run"></i>
+                    <i class="run"></i>
+                    <i class="run"></i>
+                    <i class="run"></i>
+                    <i class="run"></i>
+                  </div>
             </div>
+
+            <div class="h-table">
+            <table width="100%">
+                <tr>
+                    <% (1..UserQueue::QUEUE_SIZE).each_with_index do |item, index| %>
+                        <td style="width:<%=100/UserQueue::QUEUE_SIZE%>%">
+                            <i class="station<%= item %>"> </i>
+                            <strong>
+                                <%= @in_queues[index].nil? ? '等待入队...' : @in_queues[index].account_name %>
+                            </strong>
+                        </td>
+                    <% end %>
+                </tr>
+            </table>
+           </div>
         </div>
     </div>
 
 
 
-    <div style="position: relative ;margin-top: 10px;width: 950px;; height: 100px;  ;text-align: center;">
+    <div style="position: relative ;width: 950px;; height: 100px;  ;text-align: center;background: #EDE6C2;padding-top: 10px;">
         <img src="images/ad950_90.jpg" style="width: 950px;">
     </div>
-
-    <div class="c-left">
-        <div class="b-ui3">
-            <h2>红包领取中</h2>
-            <div class="tab">
-                <p>1.排队队列满</p>
-                <p>1.随机获取不同金额</p>
-            </div>
-        </div>
-        <div class="b-ui1">
-            <table width="100%">
+    <div class="" style="background: #EDE6C2">
+        <div class="c-left">
+            <div class="b-ui3">
+                <h2>红包领取中</h2>
+                    <div class="tab">
+                        <p>1.排队队列满</p>
+                        <p>1.随机获取不同金额</p>
+                    </div>
+           </div>
+            <div class="b-ui1">
+                 <table width="100%">
                 <colgroup>
-                    <col width="20"/>
+                    <col width="15"/>
                     <col width="30"/>
                     <col width="30"/>
-                    <col width="20"/>
+                    <col width="25"/>
                 </colgroup>
 
                 <thead>
@@ -127,13 +94,12 @@
                     <tr><td colspan="4" style="text-align: right;padding-right: 20px;">  <%= will_paginate @out_queues %></td></tr>
                 </tfoot>
             </table>
-        </div>
-        <div style="position: relative;width: 640px;height: 100px;float: left;margin-top: 10px;text-align: center">
-            <img src="images/ad640_90.jpg">
-        </div>
+            </div>
+            <div style="position: relative;width: 640px;height: 100px;float: left;margin-top: 10px;text-align: center">
+                <img src="images/ad640_90.jpg">
+            </div>
     </div>
-
-    <div class="c-right">
+        <div class="c-right">
         <div class="b-ui4">
             <h2>已经获得红包用户</h2>
         </div>
@@ -152,9 +118,8 @@
             </ul>
         </div>
     </div>
-
-
-    <div style="clear:both;"></div>
+        <div style="clear:both;"></div>
+   </div>
 </div>
 </div>
 <div class="footer">

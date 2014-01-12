@@ -1,6 +1,6 @@
 #encoding:utf-8
 class UserQueue < ActiveRecord::Base
-  QUEUE_SIZE = 3
+  QUEUE_SIZE = 5
   DEFAULT_AMOUNT = 1000 #厘
   QUEUE_TYPE = [IN=201, OUT=202, IDLE=203, NONE = 204]
   class << self
