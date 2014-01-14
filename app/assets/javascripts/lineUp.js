@@ -12,7 +12,7 @@ jQuery(function ($) {
 });
 
 $(function(){
-    $('.h-ui3 #refresh').bind('click',function(){
+    $('#refresh').bind('click',function(){
         var  $img = $(this).children('img');
         $img.attr('src', '/captcha?action=captcha&i='+new Date().getTime())
     });

@@ -44,7 +44,7 @@ EasyCaptcha.setup do |config|
 
     # generator.font_family            = File.expand_path('../../resources/afont.ttf', __FILE__)
 
-    generator.image_background_color = '#de0305'
+    generator.image_background_color = '#00A0E8'
 
     # Wave
     # generator.wave                   = true
