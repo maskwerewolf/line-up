@@ -1,6 +1,6 @@
 <div class="header1"></div>
 
-<div class="container-layout">
+
     <div class="container">
     <div class="h-ui1">
           <div class="h-title">
@@ -8,7 +8,7 @@
           </div>
 
 
-        <div style="position: absolute;top: 13px; ;right: 0px;color: #fff">
+        <div style="position: absolute;top: 2px; ;right: 0px;color: #fff">
              <p style="line-height: 14px;font-size: 14px;margin: 5px;">当前排队总人数100人,已发红包100元</p>
         </div>
         <div class="h-body">
@@ -22,13 +22,13 @@
                 <% end %>
                 <span class="error"><%= notice %></span>
                 <div class="" style="position: absolute;right: 0px;top: 5px;margin: 0px;padding: 0px;">
-                    <i class="run"></i>
-                    <i class="run"></i>
-                    <i class="run"></i>
-                    <i class="run"></i>
-                    <i class="run"></i>
-                    <i class="run"></i>
-                    <i class="run"></i>
+                    <i class="run2"></i>
+                    <i class="run2"></i>
+                    <i class="run2"></i>
+                    <i class="run2"></i>
+                    <i class="run2"></i>
+                    <i class="run2"></i>
+                    <i class="run2"></i>
                   </div>
             </div>
 
@@ -37,7 +37,7 @@
                 <tr>
                     <% (1..UserQueue::QUEUE_SIZE).each_with_index do |item, index| %>
                         <td style="width:<%=100/UserQueue::QUEUE_SIZE%>%">
-                            <i class="station<%= item %>"> </i>
+                            <i class="station<%= item %>-2"> </i>
                             <strong>
                                 <%= @in_queues[index].nil? ? '等待入队...' : @in_queues[index].account_name %>
                             </strong>
@@ -57,7 +57,7 @@
     <div class="" style="background: #ffffff">
         <div class="c-left">
             <div class="b-ui3">
-                <h2>红包领取中</h2>
+                <h2>红包发放中</h2>
                     <div class="tab">
                         <p>1.排队队列满</p>
                         <p>1.随机获取不同金额</p>
@@ -121,7 +121,7 @@
         <div style="clear:both;"></div>
    </div>
 </div>
-</div>
+
 <div class="footer">
     <div class="content">
         <p>广告合作:</p>
