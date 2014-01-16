@@ -1,5 +1,5 @@
 #encoding:utf-8
-class SystemController < ApplicationController
+class SystemController < SystemBaseController
 
   def index
     @acquisition_queue = UserQueue.where('queue_type = ? and is_acquisition_amount = ?', UserQueue::IDLE, true).order('updated_at asc')
