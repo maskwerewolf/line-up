@@ -56,7 +56,6 @@ class UserQueue < ActiveRecord::Base
       queue.is_acquisition_amount = false
       queue.is_in_queue = true
       queue.save!
-      #TODO 生成记录
     end
   end
 

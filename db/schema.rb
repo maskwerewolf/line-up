@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131219123830) do
+ActiveRecord::Schema.define(:version => 20140116165316) do
+
+  create_table "recode_logs", :force => true do |t|
+    t.string   "create_by"
+    t.string   "account_name"
+    t.integer  "last_acquisition_amount", :default => 0
+    t.integer  "amount"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+  end
 
   create_table "user_queues", :force => true do |t|
     t.string   "account_name"

@@ -1,3 +1,4 @@
+#encoding:utf-8
 class SystemController < ApplicationController
 
   def index
@@ -5,9 +6,22 @@ class SystemController < ApplicationController
   end
 
   def create
-    queue = UserQueue.find(params[:id])
-    UserQueue.out(queue, params[:amount].to_i)
+    RecodeLog.transaction do
+      amount = params[:amount].to_i
+      queue = UserQueue.find(params[:id])
+      log = RecodeLog.new
+      log.create_by = '钟欣同'
+      log.account_name = queue.account_name
+      log.last_acquisition_amount = queue.last_acquisition_amount
+      log.amount = amount
+      log.save!
+      UserQueue.out(queue, amount)
+    end
+
     redirect_to '/system'
+
+
+
   end
 
 end

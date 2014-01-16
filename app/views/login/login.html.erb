@@ -1,10 +1,9 @@
-<div style="width: 950px;margin: 0 auto;position: relative;background: #000">
+<%= form_tag '/login', method: 'post' do %>
+    <div class="login">
+        <p><label for="name">用户名</label><input type="text" id="name" name="name"/></p>
 
-    <div class="login" style="width: 400px; height: 300px;line-height: 30px;filter:alpha(Opacity=80);-moz-opacity:0.5;opacity: 0.5;z-index:100; background-color:#ffffff; margin-left: 100px;">
-        <p><label for="name">用户名</label><input type="text" id="name"/></p>
-
-        <p><label for="password">密 码</label><input type="text" id="password"/></p>
+        <p><label for="password">密 码</label><input type="text" id="password" name="password"/></p>
 
         <p><input type="submit" value="登录"></p>
     </div>
-</div>
+<% end %>
