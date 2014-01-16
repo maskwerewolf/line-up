@@ -15,7 +15,7 @@ EasyCaptcha.setup do |config|
   config.length         = 4
 
   # Image
-  config.image_height   = 32
+  config.image_height   = 30
   config.image_width    = 80
 
   # eSpeak
@@ -38,13 +38,13 @@ EasyCaptcha.setup do |config|
 
     # Font
     generator.font_size              = 24
-    generator.font_fill_color        = '#fff'
-    #generator.font_stroke_color      = '#FBEE1A'
+    generator.font_fill_color        = '#000'
+    #generator.font_stroke_color      = '#E6677C'
     #generator.font_stroke            = 1
 
     # generator.font_family            = File.expand_path('../../resources/afont.ttf', __FILE__)
 
-    generator.image_background_color = '#00A0E8'
+    #generator.image_background_color = '#00A0E8'
 
     # Wave
     # generator.wave                   = true
@@ -60,8 +60,8 @@ EasyCaptcha.setup do |config|
     # generator.implode                = 0.1
 
     # Blur
-    generator.blur                   = true
-    generator.blur_radius            = 1
-    generator.blur_sigma             = 2
+    #generator.blur                   = true
+    #generator.blur_radius            = 1
+    #generator.blur_sigma             = 2
   end
 end

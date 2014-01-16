@@ -9,14 +9,15 @@
 
 
         <div style="position: absolute;top: 2px; ;right: 0px;color: #fff">
-             <p style="line-height: 14px;font-size: 14px;margin: 5px;">当前排队总人数100人,已发红包100元</p>
+             <p style="line-height: 14px;font-size: 14px;margin: 5px;">还需<%=UserQueue::QUEUE_SIZE - @in_queues.count%>人排队就可发红包</p>
         </div>
         <div class="h-body">
 
             <div class="h-body-form">
                 <%= form_tag '/offer', method: 'post' do %>
                     <input type="text" class="inp1" name="account_name"/>
-                    <span id="refresh"> <%= captcha_tag :alt => '点击刷新' %> </span>
+                    <span id="refresh" style="border: 1px solid #00A0E8;display: inline-block;"><%= captcha_tag :alt => '点击刷新' %>
+                    </span>
                     <input type="text" class="inp3" name="captcha"/>
                     <input type="submit" value="进入队列" class="btn1">
                 <% end %>
@@ -54,13 +55,14 @@
     <div style="position: relative ;width: 950px;; height: 150px;  ;text-align: center;margin:10px 0;">
         <img src="images/80-ad1.png" style="width: 950px;">
     </div>
-    <div class="" style="background: #ffffff">
+
+    <div class="" style="">
         <div class="c-left">
             <div class="b-ui3">
                 <h2>红包发放中</h2>
                     <div class="tab">
-                        <p>1.排队队列满</p>
-                        <p>1.随机获取不同金额</p>
+                        <p>1.排队人数到达<%=UserQueue::QUEUE_SIZE%>人,就发红包1次.</p>
+                        <p>2.红包可以重复领取,每次领取红包金额将大于上次领取的红包金额.</p>
                     </div>
            </div>
             <div class="b-ui1">
@@ -83,7 +85,7 @@
                 <tbody>
                 <% @out_queues.each_with_index do |out_queue,index| %>
                     <tr>
-                        <td class="num"><%= index + 1%></td>
+                        <td class="num"><%=queue_index(index,@page_size,@page)  %> </td>
                         <td><%= out_queue.created_at.localtime.strftime('%-Y.%-m.%-d %H:%M:%S') %></td>
                         <td><%= out_queue.account_name %></td>
                         <td class="rmb"><%= out_queue.last_acquisition_amount%></td>
