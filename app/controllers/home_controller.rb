@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-    @page_size = 3
+    @page_size = 18
     @page =  params[:page] || 0
     @in_queues = UserQueue.where(queue_type: UserQueue::IN).order('updated_at asc')
     @out_queues = UserQueue.where(queue_type: UserQueue::OUT).order('updated_at asc')

@@ -16,7 +16,7 @@
             <div class="h-body-form">
                 <%= form_tag '/offer', method: 'post' do %>
                     <input type="text" class="inp1" name="account_name"/>
-                    <span id="refresh" style="border: 1px solid #00A0E8;display: inline-block;"><%= captcha_tag :alt => '点击刷新' %>
+                    <span id="refresh" style="border: 1px solid #ff0000;display: inline-block;"><%= captcha_tag :alt => '点击刷新' %>
                     </span>
                     <input type="text" class="inp3" name="captcha"/>
                     <input type="submit" value="进入队列" class="btn1">
@@ -32,28 +32,24 @@
                     <i class="run2"></i>
                   </div>
             </div>
-
             <div class="h-table">
-            <table width="100%">
-                <tr>
-                    <% (1..UserQueue::QUEUE_SIZE).each_with_index do |item, index| %>
-                        <td style="width:<%=100/UserQueue::QUEUE_SIZE%>%">
-                            <i class="station<%= item %>-2"> </i>
-                            <strong>
-                                <%= @in_queues[index].nil? ? '等待入队...' : @in_queues[index].account_name %>
-                            </strong>
-                        </td>
+                <ul>
+                     <% (1..UserQueue::QUEUE_SIZE).each_with_index do |item, index| %>
+                      <li>
+                          <i class="station<%= item %>-2"> </i>
+                          <strong><%= @in_queues[index].nil? ? '等待入队...' : split_account(@in_queues[index].account_name)%></strong>
+                      </li>
                     <% end %>
-                </tr>
-            </table>
+                 </ul>
            </div>
+            <div style="clear:both;"></div>
         </div>
     </div>
 
 
 
-    <div style="position: relative ;width: 950px;; height: 150px;  ;text-align: center;margin:10px 0;">
-        <img src="images/80-ad1.png" style="width: 950px;">
+    <div style="position: relative ;width: 950px;; height: 100px;  ;text-align: center;margin:10px 0;">
+        <img src="images/ad950_90.jpg" style="width: 950px;">
     </div>
 
     <div class="" style="">
@@ -87,7 +83,7 @@
                     <tr>
                         <td class="num"><%=queue_index(index,@page_size,@page)  %> </td>
                         <td><%= out_queue.created_at.localtime.strftime('%-Y.%-m.%-d %H:%M:%S') %></td>
-                        <td><%= out_queue.account_name %></td>
+                        <td><%= split_account(out_queue.account_name)%></td>
                         <td><span class="rmb"> <%= out_queue.last_acquisition_amount/1000.0%></span>元</td>
                     </tr>
                 <% end %>
@@ -110,7 +106,7 @@
             <ul class="list">
                 <% @acquisition_amount.each do |q| %>
                     <li>
-                        <span class="color1"><%= q.account_name %></span>已经领取红包
+                        <span class="color1"><%= split_account(q.account_name) %></span>已经领取红包
                         <span class="num"><%= q.acquisition_amount_count %></span>个共计
                         <span class="rmb"><%= q.acquisition_amount_total/1000.0 %></span>元
                     </li>

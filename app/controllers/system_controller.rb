@@ -7,10 +7,11 @@ class SystemController < SystemBaseController
 
   def create
     RecodeLog.transaction do
-      amount = params[:amount].to_i
+      amount = params[:amount].to_f
+      amount = amount * UserQueue::DEFAULT_AMOUNT_UNIT
       queue = UserQueue.find(params[:id])
       log = RecodeLog.new
-      log.create_by = '钟欣同'
+      log.create_by = session[:name]
       log.account_name = queue.account_name
       log.last_acquisition_amount = queue.last_acquisition_amount
       log.amount = amount

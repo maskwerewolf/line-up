@@ -1,7 +1,8 @@
 #encoding:utf-8
 class UserQueue < ActiveRecord::Base
-  QUEUE_SIZE = 5
-  DEFAULT_AMOUNT = 1000 #厘
+  QUEUE_SIZE = 10
+  DEFAULT_AMOUNT = 1
+  DEFAULT_AMOUNT_UNIT = 1000 #厘
   QUEUE_TYPE = [IN=201, OUT=202, IDLE=203, NONE = 204]
   class << self
     def offer(account_name)
@@ -29,7 +30,7 @@ class UserQueue < ActiveRecord::Base
 
     def handle_in_queue
       in_queues = UserQueue.where(queue_type: IN).order('updated_at asc')
-      if in_queues.count == QUEUE_SIZE - 1
+      if in_queues.count >= QUEUE_SIZE - 1
         in_queues.update_all(:queue_type => OUT, :is_in_queue => false)
         handle_out_queue
       end
