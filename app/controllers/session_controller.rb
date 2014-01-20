@@ -1,4 +1,5 @@
 #encoding:utf-8
+require 'digest'
 class SessionController <ApplicationController
   def login
     render :'login/login'
@@ -8,6 +9,12 @@ class SessionController <ApplicationController
     destroy_session
     name = params[:name]
     password = params[:password]
+
+    password  = Digest::MD5.hexdigest(password.encode('utf-8')).upcase
+    unless password == '20091368A6F1E1B851122BECD8730FC0'
+      redirect_to 'login'
+      return
+    end
     create_session name
     redirect_to '/system'
   end
