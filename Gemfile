@@ -10,6 +10,10 @@ gem 'mysql2', '0.3.11'
 gem 'easy_captcha'
 gem 'will_paginate', '~> 3.0'
 
+
+group :development do
+  gem 'thin'
+end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
