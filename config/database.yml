@@ -27,7 +27,7 @@ production:
     database: line_up
     encoding: utf8
     username: root
-    password: root
+    password: 111111
     host: localhost
     pool: 5
     timeout: 500
