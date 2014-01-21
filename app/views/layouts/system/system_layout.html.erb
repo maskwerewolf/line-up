@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>排队领钱</title>
+    <%= stylesheet_link_tag 'application' %>
+    <%= javascript_include_tag 'application' %>
+    <meta name="description" content="排队领钱">
+    <meta name="Keywords" content="排队,新年红包,领钱,排队领钱">
+</head>
+<body>
+
+<div class="s-header">
+    <div class="shell">
+        <div class="top">
+            <h1>line up</h1>
+            <div class="top-navigation">
+                当前登录<a href=""><%=session[:name]%></a>
+                <span>|</span><a href="/logout">退出</a>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <ul>
+                <li><a href="#">TODO</a></li>
+                <li><a href="#">参数设置</a></li>
+                <li><a href="#">数据统计</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<%= yield %>
+
+<div class="s-footer">
+    <div class="shell">
+        <h2>FUCK</h2>
+    </div>
+</div>
+</body>
+
+</html>

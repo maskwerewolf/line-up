@@ -6,6 +6,9 @@ LineUp::Application.routes.draw do
   match 'login', to: 'session#login', :via => [:get]
   match 'login', to: 'session#create', :via => [:post]
   match 'logout', to: 'session#destroy', :via =>[:get]
-  resources :system
+  namespace :system do
+    resources :system
+  end
+
 
 end
