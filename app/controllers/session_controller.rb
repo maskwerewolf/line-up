@@ -16,7 +16,7 @@ class SessionController <ApplicationController
       return
     end
     create_session name
-    redirect_to '/system'
+    redirect_to '/system/queues'
   end
 
   def destroy

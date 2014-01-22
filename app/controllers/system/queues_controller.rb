@@ -1,6 +1,6 @@
 #encoding:utf-8
 module System
-  class SystemController < SystemBaseController
+  class QueuesController < SystemBaseController
 
 
     def index
@@ -20,11 +20,9 @@ module System
         log.save!
         UserQueue.out(queue, amount)
       end
-
-      redirect_to '/system'
-
-
+      redirect_to '/system/queues'
     end
+
 
   end
 end

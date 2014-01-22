@@ -1,0 +1,37 @@
+<div class="s-container">
+    <div class="shell">
+        <div class="main">
+            <table width="100%">
+                <colgroup>
+                    <col width="25"/>
+                    <col width="25"/>
+                    <col width="25"/>
+                    <col width="25"/>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>created_by</th>
+                    <th>用户账号</th>
+                    <th>金额(元)</th>
+                    <th>时间</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <%@recodes.each_with_index do |recode|%>
+                    <tr>
+                        <td><%= recode.create_by%></td>
+                        <td><%=recode.account_name%></td>
+                        <td><span class="rmb"><%=recode.amount/1000.0%></span></td>
+                        <td><%=recode.created_at.localtime.strftime('%-Y.%-m.%-d %H:%M:%S')%></td>
+                    </tr>
+                <% end %>
+                </tbody>
+                <tfoot>
+                  <tr><td colspan="4" style="text-align: right;padding-right: 20px;">  <%= will_paginate @recodes %></td></tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
