@@ -1,0 +1,46 @@
+<div class="s-container">
+    <div class="shell">
+        <div class="main">
+            <table width="100%">
+                <!--<colgroup>-->
+                    <!--<col width="25"/>-->
+                    <!--<col width="25"/>-->
+                    <!--<col width="25"/>-->
+                    <!--<col width="25"/>-->
+                <!--</colgroup>-->
+                <thead>
+                <tr>
+                    <th>队列号</th>
+                    <th>用户账号</th>
+                    <th>次数</th>
+                    <th>总额(元)</th>
+                    <th>上次获得金额(元)</th>
+                    <th>时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <%@users_queue.each_with_index do |user,index|%>
+                    <tr>
+                        <td><%= queue_index(index,@page_size,@page)%></td>
+                        <td><%=user.account_name%></td>
+                        <td><span class="num"><%= user.acquisition_amount_count %></span></td>
+                        <td><span class="rmb"><%=sprintf('%g',user.acquisition_amount_total/1000.0)%></span></td>
+                        <td><span class="rmb"><%=sprintf('%g',user.last_acquisition_amount/1000.0)%></span></td>
+                        <td><%=user.created_at.localtime.strftime('%-Y.%-m.%-d %H:%M:%S')%></td>
+                        <td>
+                            <!--<a href="/system/users_queue/<%=user.id%>" data-method='delete'>删除</a>-->
+                            <%= link_to '删除', "/system/users_queue/#{user.id}", method: :delete,:confirm => 'Are you sure?' %>
+                        </td>
+                    </tr>
+                <% end %>
+                </tbody>
+                <tfoot>
+                  <tr><td colspan="7" style="text-align: right;padding-right: 20px;">  <%= will_paginate @users_queue %></td></tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+

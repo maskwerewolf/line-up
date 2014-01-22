@@ -3,9 +3,10 @@
 <head>
     <title>排队领钱</title>
     <%= stylesheet_link_tag 'application' %>
-    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'application_system' %>
     <meta name="description" content="排队领钱">
     <meta name="Keywords" content="排队,新年红包,领钱,排队领钱">
+    <%= csrf_meta_tags %>
 </head>
 <body>
 
@@ -23,7 +24,7 @@
             <ul>
                 <li><a href="/system/queues">TODO</a></li>
                 <li><a href="/system/recodes">发放记录</a></li>
-                <li><a href="#">数据统计</a></li>
+                <li><a href="/system/users_queue">队列人数</a></li>
             </ul>
         </div>
     </div>

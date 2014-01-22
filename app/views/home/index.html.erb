@@ -1,7 +1,7 @@
 <div class="header1"></div>
 
 
-    <div class="container">
+<div class="container">
     <div class="h-ui1">
           <div class="h-title">
                <strong>正在排队.....</strong>
@@ -97,7 +97,7 @@
                         <td class="num"><%=queue_index(index,@page_size,@page)  %> </td>
                         <td><%= out_queue.created_at.localtime.strftime('%-Y.%-m.%-d %H:%M:%S') %></td>
                         <td><%= split_account(out_queue.account_name)%></td>
-                        <td><span class="rmb"> <%= out_queue.last_acquisition_amount/1000.0%></span>元</td>
+                        <td><span class="rmb"> <%= sprintf('%g',out_queue.last_acquisition_amount/1000.0)%></span>元</td>
                     </tr>
                 <% end %>
                 </tbody>
@@ -132,7 +132,7 @@
                     <li>
                         <span class="color1"><%= split_account(q.account_name) %></span>已经领取红包
                         <span class="num"><%= q.acquisition_amount_count %></span>个共计
-                        <span class="rmb"><%= q.acquisition_amount_total/1000.0 %></span>元
+                        <span class="rmb"><%= sprintf('%g',q.acquisition_amount_total/1000.0) %></span>元
                     </li>
                 <% end %>
 
@@ -146,8 +146,12 @@
 
 <div class="footer">
     <div class="content">
-        <p>广告合作:</p>
-        <p>联系我们:</p>
+             <p class="menu_footer">
+                 <a href="#">商务合作</a>
+                <span>|</span><a href="#">帮助中心</a>
+                <span>|</span><a href="#">关于我们</a>
+             </p>
+             <p>Copyright &copy;2012 www.80de.com All Rights Reserved蜀ICP备12012405号-2</p>
     </div>
 </div>
 

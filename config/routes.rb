@@ -8,8 +8,8 @@ LineUp::Application.routes.draw do
   match 'logout', to: 'session#destroy', :via =>[:get]
   namespace :system do
     resources :queues
-
     resources :recodes ,only: [:index]
+    resources :users_queue
   end
 
 
