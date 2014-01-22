@@ -9,7 +9,7 @@ gem 'sqlite3'
 gem 'mysql2', '0.3.11'
 gem 'easy_captcha'
 gem 'will_paginate', '~> 3.0'
-
+gem 'httparty'
 
 group :development do
   gem 'thin'
