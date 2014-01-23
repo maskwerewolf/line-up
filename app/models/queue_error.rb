@@ -20,4 +20,10 @@ class QueueError < StandardError
       super(msg)
     end
   end
+
+  class FrequentlyAccess < QueueError
+    def initialize(msg = Messages::FREQUENTY_ACCESS)
+      super(msg)
+    end
+  end
 end

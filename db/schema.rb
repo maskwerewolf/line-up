@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140116165316) do
+ActiveRecord::Schema.define(:version => 20140123141116) do
+
+  create_table "access_records", :force => true do |t|
+    t.string   "ip"
+    t.integer  "access_count"
+    t.integer  "access_total"
+    t.datetime "record_time"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "access_records", ["ip"], :name => "index_access_records_on_ip", :unique => true
 
   create_table "recode_logs", :force => true do |t|
     t.string   "create_by"

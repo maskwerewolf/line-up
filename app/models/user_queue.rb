@@ -5,8 +5,10 @@ class UserQueue < ActiveRecord::Base
   DEFAULT_AMOUNT_UNIT = 1000 #厘
   QUEUE_TYPE = [IN=201, OUT=202, IDLE=203, NONE = 204]
   class << self
-    def offer(account_name)
+    def offer(account_name,client_ip)
       UserQueue.transaction do
+        HttpUtil.auth_alipay_account(account_name)
+        AccessRecord.auth_access_record(client_ip)
         handle_in_queue
         q = first_in_or_second_in(account_name)
         raise QueueError::AccountNameExistQueue unless q.is_in_queue
